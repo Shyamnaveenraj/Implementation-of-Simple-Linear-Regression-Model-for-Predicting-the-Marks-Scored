@@ -1,127 +1,59 @@
-
-
-# Ex.No:2 Implementation of a Hello world Activity using all lifecycles methods using Android Studio.
-
+# Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored
 
 ## AIM:
-To create Hello world Activity using all lifecycles methods to display messages using android studio.
+To write a program to implement the simple linear regression model for predicting the marks scored.
 
-## EQUIPMENTS REQUIRED:
-
-Android Studio(Min. required Artic Fox)
-
+## EQUIPMENT'S REQUIRED:
+1. Hardware – PCs
+2. Anaconda – Python 3.7 Installation / Moodle-Code Runner
 
 ## ALGORITHM:
+1. Import the standard Libraries.
+2. Set variables for assigning dataset values.
+3. Import linear regression from sklearn.
+4. Assign the points for representing in the graph
+5. Predict the regression for marks by using the representation of the graph.
+6. Compare the graphs and hence we obtained the linear regression for the given datas.
 
-Step 1: Open Android Stdio and then click on File -> New -> New project.
-
-Step 2: Then type the Application name as HelloWorld and click Next.
-
-Step 3: Then select the Minimum SDK as shown below and click Next.
-
-Step 4: Then select the Empty Activity and click Next. Finally click Finish.
-
-Step 5: Design layout in activity_main.xml.
-
-Step 6: Display message give in MainActivity file.
-
-Step 7: Save and run the application.
-
-
-
-## Program:
- ```
+## PROGRAM:
+~~~
 /*
-Program to implement a Hello world Activity using all lifecycles methods using Android Studio .
-Developed by: Ragul VK
-RegisterNumber:  212221240043
+Program to implement the simple linear regression model for predicting the marks scored.
+Developed by: Syed Abdul Wasih H
+Register Number:  212221240057
 */
-```
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+dataset = pd.read_csv('Stud_scores.csv')
+dataset.head()
+X = dataset.iloc[:,:-1].values
+X
+Y = dataset.iloc[:,1].values
+Y
+from sklearn.model_selection import train_test_split
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size = 1/3,random_state = 0)
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train,Y_train)
+Y_pred = regressor.predict(X_test)
+Y_pred
+Y_test
+plt.scatter(X_train,Y_train,color="purple")
+plt.plot(X_train,regressor.predict(X_train),color="black")
+plt.title("Hours vs Scores (Training Set)")
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+plt.scatter(X_test,Y_test,color="red")
+plt.plot(X_train,regressor.predict(X_train),color="black") 
+plt.xlabel("Hours")
+plt.ylabel("Scores")
+plt.show()
+~~~
+## OUTPUT:
+![output](./img/1.png)
+![output](./img/2.png)
 
-## MainActivity.java:
-
-```
-package com.firstapp.ex_01;
-
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.widget.Toast;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toast toast=Toast.makeText(getApplicationContext(),"OnCreate Executed",Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onStart(){
-        super.onStart();
-        Toast toast=Toast.makeText(getApplicationContext(),"OnStart Executed",Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onResume(){
-        super.onResume();
-        Toast toast=Toast.makeText(getApplicationContext(),"OnResume Executed",Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onPause(){
-        super.onPause();
-        Toast toast=Toast.makeText(getApplicationContext(),"OnPause Executed",Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onStop(){
-        super.onStop();
-        Toast toast=Toast.makeText(getApplicationContext(),"OnStop Executed",Toast.LENGTH_LONG);
-        toast.show();
-    }
-    protected void onRestart() {
-        super.onRestart();
-        Toast toast = Toast.makeText(getApplicationContext(), "OnRestart Executed", Toast.LENGTH_LONG);
-        toast.show();
-
-    }
-    protected void onDestroy(){
-        super.onDestroy();
-        Toast toast=Toast.makeText(getApplicationContext(),"OnDestroy Executed",Toast.LENGTH_LONG);
-        toast.show();
-
-    }
-}
-
-
-```
-
-## activity_main.xml:
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
-## Output:
-![image](https://user-images.githubusercontent.com/94154683/234036999-f9b09faf-9610-4ee5-a596-892e8d71bcee.png)
-
-
-
-## Result:
-Thus a program to implement the various life cycles of an activity is written and successfully executed using Android Studio.
+## RESULT:
+Thus, the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
